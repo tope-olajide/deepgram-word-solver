@@ -35,9 +35,9 @@ cursor: pointer;
      align-items: center;
      justify-content: space-between;
      flex-direction: column;
-     width: 30%;
-     background-color: black;
-     padding: 10px;
+     width: 100%;
+     /* background-color: black; */
+     padding: 20px;
   }
   .recordingText{
     margin: 20px 0;
@@ -61,4 +61,8 @@ cursor: pointer;
     color: white;
     transform: translateY(-2px);
   }
-
+.anagramWordsContainer{
+  display: flex;
+  width: 80%;
+  margin: 100px auto;
+}
