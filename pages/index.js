@@ -16,11 +16,10 @@ export default function Home() {
   }
   return (
     <div className={styles.container}>
+      <section className={styles.anagramWordsContainer}>
 <button className={styles.pushable}>
-  <span className={styles.front}>
-    P
-  </span>
-</button>
+  <span className={styles.front}>P</span>
+</button></section>
       <section  className={styles.mainSection} >
 <section  className={styles.recordingSection} >
 <div className={isRecording?styles.show:styles.hide}>
