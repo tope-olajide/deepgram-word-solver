@@ -11,10 +11,11 @@ cursor: pointer;
 }
 .container {
   width: 400px;
-  height: 700px;
-  margin: 20px auto;
+  height: 95vh;
+  margin: 0px auto;
   background-color: #0F4DF2;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow-x: auto;
 }
 .micIcon {
   width: 70px;
@@ -26,12 +27,12 @@ cursor: pointer;
   .hide {
    opacity: 0;
   }
-  .soundWaveImage{
+/*   .soundWaveImage {
     width: 500px;
     height: 20px;
-  }
-  .recordingSection{
-     margin: 0px auto 0 auto;
+  } */
+  .recordingSection {
+     margin: auto auto 0 auto;
      display: flex;
      align-items: center;
      justify-content: space-between;
@@ -69,7 +70,7 @@ cursor: pointer;
     transform: translateY(-2px);
     text-align: center;
   } */
-.anagramWordsContainer, .anagramWordsSolution{
+.anagramWordsContainer{
   display: flex;
 flex-wrap: wrap;
   align-items: center;
@@ -81,11 +82,11 @@ flex-wrap: wrap;
 }
 .foundWordsContainer{
   width: 90%;
-  height: 200px;
+  height: 100px;
   margin: 0 auto;
   background-color: #19BDE6;
 }
-.validDuplicateWords, .wordsFoundNeededContainer, .shuffleClearButtin{
+.validDuplicateWords, .wordsFoundNeededContainer, .shuffleClearButton{
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -106,4 +107,22 @@ padding: 5px;
 }
 .anagramWordsSolution{
 position: absolute;
+display: none;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+width: 100%;
+margin: 0px auto;
+padding-top: 10px;
+}
+.topMenu {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: red;
+}
+.topMenu h3{
+color: white;
+margin: 0;
 }
