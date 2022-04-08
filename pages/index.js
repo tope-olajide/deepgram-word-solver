@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faL } from '@fortawesome/free-solid-svg-icons'
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons'
-import soundWave from './../public/sound-wave-waves.gif'
+import soundWave from './../public/sound-wave-2.gif'
 export default function Home() {
   const [isRecording, setIsRecording] = useState(false);
   const recordAnswer = (e) => {
@@ -17,11 +17,48 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <section className={styles.anagramWordsContainer}>
-<button className={styles.pushable}>
-  <span className={styles.front}>P</span>
-</button></section>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>N</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>G</span>
+</div>
+
+<div className={styles.pushable}>
+  <span className={styles.front}>R</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>M</span>
+</div>
+</section>
+<section className={styles.foundWordsContainer}>
+
+</section>
+<section className={styles.validDuplicateWords}>
+<p>Duplicate </p>
+<p>Valid</p>
+</section>
+<section className={styles.wordsFoundNeededContainer}>
+<p>Words found: <span></span></p>
+<p>Words Needed: <span></span></p>
+</section>
+<section className={styles.shuffleClearButtin}>
+<button>Shuffle</button>
+<button>Clear</button>
+</section>
       <section  className={styles.mainSection} >
+     
 <section  className={styles.recordingSection} >
+  
 <div className={isRecording?styles.show:styles.hide}>
  
  <h1 className={styles.recordingText}>Recording...</h1>
@@ -34,7 +71,30 @@ export default function Home() {
  
  </div>
  
+ <section className={styles.anagramWordsSolution}>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>N</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>G</span>
+</div>
 
+<div className={styles.pushable}>
+  <span className={styles.front}>R</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>A</span>
+</div>
+<div className={styles.pushable}>
+  <span className={styles.front}>M</span>
+</div>
+</section>
   <div className={styles.micIconContainer} onMouseDown={(e) => {
         recordAnswer()
       }} onMouseUp={(e) => {
