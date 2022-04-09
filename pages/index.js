@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faL } from "@fortawesome/free-solid-svg-icons";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import soundWave from "./../public/sound-wave-2.gif";
+import {Deepgram}  from '@deepgram/sdk';
 export default function Home() {
   const [url, setUrl] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
+  const deepgram = new Deepgram(process.env.DEEPGRAM_API_KEY);
   const recordAnswer = (e) => {
     setIsRecording(true);
   };
@@ -36,8 +38,15 @@ export default function Home() {
       recorder.start(1000);
 
       setTimeout(() => {
-        recorder.stop(); //   Cannot read ('stop') =error
-      }, 2000);
+        recorder.stop(); 
+        fetch('/', {
+          method: 'post',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+               "first_name": this.state.firstName
+          })
+       });
+      }, 5000);
     } catch (e) {
       console.log("error getting stream", e);
     }
