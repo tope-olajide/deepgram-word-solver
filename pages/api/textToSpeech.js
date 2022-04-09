@@ -4,7 +4,10 @@ export default function handler(req, res) {
     if (req.method === 'POST') {
         const deepgram = new Deepgram(process.env.DEEPGRAM_API_KEY);
         const { url } = req.body
-        deepgram.transcription.preRecorded({ url })
+        deepgram.transcription.preRecorded({ 
+            buffer: Buffer.from(url, 'base64'), 
+            mimetype: 'audio/wav'
+         })
   .then((transcript) => {
     console.log(transcript);
     res.status(200).json({ transcript });
