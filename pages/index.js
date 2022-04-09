@@ -31,6 +31,7 @@ export default function Home() {
            blob = new Blob(chunks, { type: "audio/webm" });
           let testAudioRecord = URL.createObjectURL(blob);
           const audio = new Audio(testAudioRecord);
+          setUrl(testAudioRecord)
           audio.play();
           console.log(testAudioRecord);
         }
@@ -39,11 +40,11 @@ export default function Home() {
 
       setTimeout(() => {
         recorder.stop(); 
-        fetch('/', {
+        fetch('/api/textToSpeech', {
           method: 'post',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({
-               "first_name": this.state.firstName
+               url
           })
        });
       }, 5000);
