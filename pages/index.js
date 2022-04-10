@@ -20,32 +20,37 @@ export default function Home() {
     let chunks = [];
     let recorder;
     let blob
+     let testAudioRecord
     try {
       let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       recorder = new MediaRecorder(stream);
       recorder.ondataavailable = (e) => {
         chunks.push(e.data);
         if (recorder.state === "inactive") {
-           blob = new Blob(chunks, { type: "audio/webm" });
-          let testAudioRecord = URL.createObjectURL(blob);
+           blob = new Blob(chunks, { type: "audio/mp3" });
+           testAudioRecord = URL.createObjectURL(blob);
           const audio = new Audio(testAudioRecord);
           setUrl(testAudioRecord)
           audio.play();
-          console.log(testAudioRecord);
+          
+           console.log(testAudioRecord);
+        const formData = new FormData();
+        formData.append('file', blob ); 
+        console.log(formData)
+        fetch('/api/textToSpeech', {
+          method: 'POST',
+          body: formData
+       }).then(r => r.json()).then(data => {
+         //alert(data.response)
+        console.log(data.results.channels[0].alternatives[0].transcript) })
         }
       };
       recorder.start(1000);
 
       setTimeout(() => {
-        recorder.stop(); 
-        fetch('/api/textToSpeech', {
-          method: 'post',
-          body: JSON.stringify({
-               url
-          })
-       }).then(r => r.json()).then(data => {
-        console.log(data) })
-      }, 5000);
+        recorder.stop();
+       
+      }, 2000);
     } catch (e) {
       console.log("error getting stream", e);
     }
