@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import anagrams from "./utils/anagrams";
+import anagrams from "../utils/anagrams";
 import styles from "../styles/Home.module.css";
 import MainGame from './MainGame'
 export default function LevelLoader({ level, scores }) {
