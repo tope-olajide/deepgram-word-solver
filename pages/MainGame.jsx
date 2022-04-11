@@ -99,6 +99,7 @@ const transcribeAnswer = (blobFile) => {
     }
   };
   return (
+      <>
     <div className={styles.container}>
       <section className={styles.topMenu}>
         <h3>Scores: 500</h3>
@@ -106,14 +107,14 @@ const transcribeAnswer = (blobFile) => {
         <h3>x</h3>
       </section>
       <section className={styles.anagramWordsContainer}>
-           {anagram.split("").map((letter)=>{
+            {anagram?anagram.split("").map((letter)=>{
               return (
                 // eslint-disable-next-line react/jsx-key
                 <div className={styles.anagramLetter}>
                 <span>{letter}  </span>
               </div>
               )
-          })} 
+          }):""}  
       
        
       </section>
@@ -191,5 +192,6 @@ const transcribeAnswer = (blobFile) => {
     
       </section>
     </div>
+    </>
   );
 }
