@@ -147,15 +147,26 @@ display: flex;
   font-weight: 700;
 }
 .topMenu {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 20px;
+ 
   background-color: #3e534c;
+  padding: 5px;
+}
+.topMenu div{
+  width: 90%;
+   display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 .topMenu h3{
 color: white;
 margin: 0;
 font-size: 15px;
+padding: 0;
+}
+.topMenu h3:nth-child(3) {
+border: 2px solid rgb(255, 255, 255);
+padding: 0px 5px 2px;
+text-align: center;
 }
 
 .isRecordingSection{
