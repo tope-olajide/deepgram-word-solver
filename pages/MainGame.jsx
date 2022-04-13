@@ -268,6 +268,12 @@ export default function MainGame({
             onMouseUp={(e) => {
               stopRecordingAnswer();
             }}
+            onTouchStart={(e) => {
+              recordAnswer();
+            }}
+            onTouchEnd={(e) => {
+              stopRecordingAnswer();
+            }}
           >
             <FontAwesomeIcon className={styles.micIcon} icon={faMicrophone} />
           </button>
