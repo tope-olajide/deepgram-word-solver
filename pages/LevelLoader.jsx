@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import anagrams from "../utils/anagrams";
 import styles from "../styles/Home.module.css";
-import MainGame from './MainGame'
+import MainGame from './MainGame';
+
 export default function LevelLoader({ level, scores }) {
     const currentLevel = level || 1;
     const [isGameOn, setIsGameOn] = useState(false);
@@ -13,7 +14,7 @@ export default function LevelLoader({ level, scores }) {
     //randomly pick an anagram word with solution
     
     useEffect(() => {
-        const anagramWordWithSolution = anagrams[0/* Math.floor(Math.random() * (anagrams.length )) */]
+        const anagramWordWithSolution = anagrams[ Math.floor(Math.random() * (anagrams.length )) ]
          const word = anagramWordWithSolution.word;
          const solution = anagramWordWithSolution.solutions;
          setAnagramWord(word);
@@ -37,6 +38,8 @@ export default function LevelLoader({ level, scores }) {
               <MainGame
               anagramWord = {anagramWord}
               anagramWordSolution = {anagramWordSolution}
+              currentScores  = {currentScores}
+              currentLevel = {currentLevel}
               />
               </>
           )
@@ -47,8 +50,8 @@ return (
     <div className={styles.container}>
         <section className={styles.levelLoaderContainer}>
             <section>
-            <h1>Level: 1 </h1>
-            <h1>Words needed to advance: 8 </h1>
+            <h1>Level: {currentLevel} </h1>
+            <h1>Words needed to advance: {wordsNeeded}</h1>
         </section>
 
         <section>
