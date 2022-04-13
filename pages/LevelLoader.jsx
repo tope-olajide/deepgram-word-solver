@@ -13,7 +13,7 @@ export default function LevelLoader({ level, scores }) {
     //randomly pick an anagram word with solution
     
     useEffect(() => {
-        const anagramWordWithSolution = anagrams[Math.floor(Math.random() * (anagrams.length ))]
+        const anagramWordWithSolution = anagrams[0/* Math.floor(Math.random() * (anagrams.length )) */]
          const word = anagramWordWithSolution.word;
          const solution = anagramWordWithSolution.solutions;
          setAnagramWord(word);
