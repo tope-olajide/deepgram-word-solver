@@ -3,13 +3,16 @@ import { useState, useEffect, useCallback } from "react";
 import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
-
 import soundWave from "./../public/sound-wave-2.gif";
 import { ToastContainer, toast } from "react-toastify";
+import LevelLoader from "./LevelLoader";
+
+
 export default function MainGame({
   anagramWord,
   currentScores,
   anagramWordSolution,
+  currentLevel
 }) {
   const [anagram, setAnagram] = useState(anagramWord);
   const [anagramSolution, setAnagramSolution] = useState(anagramWordSolution);
@@ -21,30 +24,15 @@ export default function MainGame({
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isInvalid, setIsInValid] = useState(false);
   const [wordsFound, setWordsFound] = useState([]);
-  const [score, setScore] = useState(currentScores);
+  const [scores, setScores] = useState(currentScores);
+  const [level, setLevel] = useState(currentLevel);
   const [isError, setIsError] = useState(false);
+  const [isNextLevelButton, setIsNextLevelButton] = useState(false);
+  const [isNextLevel, setIsNextLevel] = useState(false);
+  useEffect(() => {
+    return shuffle();
+  }, [shuffle]);
 
-  /*   useEffect(() => { */
-  /* console.log(anagram);
-     console.log(anagramSolution); */
-
-  /*     const wordIsDuplicate = wordsFound.includes(transcribedWord);
-    if (wordIsDuplicate) {
-        setIsDuplicate(true);
-        setIsInValid(false);
-      } else {
-        setIsDuplicate(false);
-      } */
-  /*       if (anagramSolution.includes(transcribedWord)) {
-
-      //  setIsInValid(false);
-      //  setScore(score + transcribedWord.length * 100);
-        setWordsFound([...wordsFound, 'transcribedWord']);
-      } */
-  /*    setIsInValid(true);
-   */
-
-  /*   },[ anagramSolution, transcribedWord, wordsFound]);  */
   const shuffle = useCallback(() => {
     const shuffled = anagram
       .split("")
@@ -66,6 +54,7 @@ export default function MainGame({
   };
   const stopRecordingAnswer = (e) => {
     setIsRecording(false);
+    setIsTranscribing(true)
   };
 
   const transcribeAnswer = (blobFile) => {
@@ -146,8 +135,12 @@ export default function MainGame({
       toast.success("Superb !", {
         position: toast.POSITION.BOTTOM_CENTER,
       });
-      setScore(score + word.length * 100);
+      setScores(scores + word.length * 100);
       setWordsFound([...wordsFound, word]);
+      const wordsNeeded = 5+level
+      if(wordsFound >= wordsNeeded) {
+        setIsNextLevelButton(true);
+      }
       return;
     } else {
       setIsInValid(true);
@@ -156,15 +149,30 @@ export default function MainGame({
         position: toast.POSITION.BOTTOM_CENTER,
       });
     }
+
   };
+      const loadNextLevel = () => {
+      setIsNextLevel(true)
+    }
+    if (isNextLevel) {
+      return (
+        <>
+        <LevelLoader 
+        level={ level }
+        scores = { scores }
+        />
+        </>
+      )
+    }
   return (
     <>
       <ToastContainer />
       <div className={styles.container}>
         <section className={styles.topMenu}>
-          <h3>Scores: 500</h3>
-          <h3>Level: 2</h3>
-          <h3>x</h3>
+          <div>
+          <h3>Scores: {scores}</h3>
+          <h3>Level: {level}</h3>
+          <h3>x</h3></div>
         </section>
         <section className={styles.anagramWordsContainer}>
           {anagram
@@ -190,17 +198,17 @@ export default function MainGame({
         </section>
         <section className={styles.wordsFoundNeededContainer}>
           <p>
-            Words found: <span>0</span>
+            Words found: <span>{wordsFound.length}</span>
           </p>
           <p>
-            Words Needed: <span>6</span>
+            Words Needed: <span>{5+currentLevel}</span>
           </p>
         </section>
         <section className={styles.shuffleClearButton}>
           <button className={styles.button} onClick={shuffle}>
             Shuffle
           </button>
-          <button className={styles.button}>Clear</button>
+          <button style ={isNextLevelButton?{display:"block"}:{display:"none"}} onClick={loadNextLevel} className={styles.button}>Next Level</button>
         </section>
         <section className={styles.mainSection}>
           <div></div>
@@ -250,7 +258,7 @@ export default function MainGame({
             
           </section>
           <button
-            disabled={false}
+            disabled={isTranscribing? true: false}
             className={styles.microphoneContainer}
             onMouseDown={(e) => {
               recordAnswer();
