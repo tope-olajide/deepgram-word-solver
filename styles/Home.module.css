@@ -183,6 +183,7 @@ display: block;
   display: inline-block;
   font-size: 16px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .levelLoaderContainer {
   width: 90%;
@@ -191,7 +192,6 @@ display: block;
   flex-direction: column;
   justify-content: space-evenly;
   height: 100%;
-  
 }
 .levelLoaderContainer h1 {
   color: rgb(255, 255, 255);
@@ -200,4 +200,26 @@ display: block;
 }
 .levelLoaderContainer button {
 margin: 10px;
+}
+.mainMenuContainer {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainMenuContainer button{
+  margin: 20px 0;
+  border-radius: 0;
+  padding: 20px 0;
+  width: 95%;
+  margin: 20px auto;
+}
+@media only screen and (max-width: 500px) {
+  .container {
+    height:98vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+  }
 }
