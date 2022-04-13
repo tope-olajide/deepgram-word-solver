@@ -29,9 +29,6 @@ export default function MainGame({
   const [isError, setIsError] = useState(false);
   const [isNextLevelButton, setIsNextLevelButton] = useState(false);
   const [isNextLevel, setIsNextLevel] = useState(false);
-  useEffect(() => {
-    return shuffle();
-  }, [shuffle]);
 
   const shuffle = useCallback(() => {
     const shuffled = anagram
@@ -44,6 +41,11 @@ export default function MainGame({
     console.log(anagram);
     setAnagram(shuffled);
   }, [anagram]);
+
+  useEffect(() => {
+     shuffle();
+  }, [shuffle]);
+
   const recordAnswer = (e) => {
     setTranscribedWord("");
     setIsError(false);
