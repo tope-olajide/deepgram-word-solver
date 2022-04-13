@@ -1,9 +1,8 @@
-import LevelLoader from "./LevelLoader";
-
+import MainMenu from "./MainMenu"
 export default function Home () {
   return (
   <>
-  <LevelLoader />
+  <MainMenu />
   </>
 )
 }
