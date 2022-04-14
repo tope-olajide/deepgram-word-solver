@@ -24,7 +24,7 @@ export default function MainGame({
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isInvalid, setIsInValid] = useState(false);
   const [wordsFound, setWordsFound] = useState([]);
-  const [scores, setScores] = useState(currentScores);
+  const [scores, setScores] = useState(currentScores +200);
   const [level, setLevel] = useState(currentLevel);
   const [isError, setIsError] = useState(false);
   const [isNextLevelButton, setIsNextLevelButton] = useState(false);
@@ -44,7 +44,11 @@ export default function MainGame({
 
   useEffect(() => {
      shuffle();
-  }, [shuffle]);
+     const wordsNeeded = 5+level
+     if(wordsFound.length >= wordsNeeded) {
+       setIsNextLevelButton(true);
+     }
+  }, [shuffle, level, wordsFound.length]);
 
   const recordAnswer = (e) => {
     setTranscribedWord("");
@@ -139,10 +143,7 @@ export default function MainGame({
       });
       setScores(scores + word.length * 100);
       setWordsFound([...wordsFound, word]);
-      const wordsNeeded = 5+level
-      if(wordsFound >= wordsNeeded) {
-        setIsNextLevelButton(true);
-      }
+
       return;
     } else {
       setIsInValid(true);
@@ -160,7 +161,7 @@ export default function MainGame({
       return (
         <>
         <LevelLoader 
-        level={ level }
+        level={ level+1 }
         scores = { scores }
         />
         </>
