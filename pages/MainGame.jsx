@@ -103,7 +103,7 @@ export default function MainGame({
         if (recorder.state === "inactive") {
           setIsRecording(false);
           setIsTranscribing(true)
-          const blob = new Blob(chunks, { type: "audio/mp3" });
+          const blob = new Blob(chunks, { type: "audio/wav" });
           testAudioRecord = URL.createObjectURL(blob);
           /*  const audio = new Audio(testAudioRecord);
           setUrl(testAudioRecord)
