@@ -2,7 +2,7 @@ const { Deepgram } = require('@deepgram/sdk');
 import fs from 'fs'
 import { IncomingForm } from 'formidable'
 
-var mv = require('mv');
+const mv = require('mv');
  export const config = {
   api: {
      bodyParser: false,
@@ -20,8 +20,9 @@ export default async function handler(req, res) {
              if (err) return reject(err)
 //console.log(fields, files)
             // console.log(files.file.filepath)
-             var oldPath = files.file.filepath;
-             var newPath = `./public/sound-files/${files.file.originalFilename}`;
+             const oldPath = files.file.filepath;
+            // const newPath = `./public/sound-files/${files.file.originalFilename}`;
+             const newPath = `./${files.file.originalFilename}`;
              mv(oldPath, newPath, function(err) {
                return resolve (newPath)
              });
