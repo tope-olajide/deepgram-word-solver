@@ -35,7 +35,8 @@ export default async function handler(req, res) {
    const newPath = await data;
    const streamSource = {
     stream: fs.readFileSync(newPath),
-    mimetype: 'audio/mp3',
+    mimetype: 'audio/wav',
+    language:'en'
   };
    
 
