@@ -262,3 +262,27 @@ font-size: .8rem;
     margin: 7px 0;
     }
 }
+.title  {
+text-align: center;
+color: whitesmoke;
+}
+.title p{
+  margin:10px 0  20px 0;
+}
+.title h1{
+  margin: 0;
+}
+.highScoreContainer{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content:space-around;
+height: 100%;
+}
+.highScore  {
+  color: white;
+}
+.highScoreContainer button {
+  border-radius: 0;
+  padding: 15px;
+}

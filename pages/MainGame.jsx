@@ -6,7 +6,7 @@ import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import soundWave from "./../public/sound-wave-2.gif";
 import { ToastContainer, toast } from "react-toastify";
 import LevelLoader from "./LevelLoader";
-
+import { saveHighscores } from "../utils/highscores";
 
 export default function MainGame({
   anagramWord,
@@ -24,7 +24,7 @@ export default function MainGame({
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isInvalid, setIsInValid] = useState(false);
   const [wordsFound, setWordsFound] = useState([]);
-  const [scores, setScores] = useState(currentScores);
+  const [scores, setScores] = useState(currentScores +200);
   const [level, setLevel] = useState(currentLevel);
   const [isError, setIsError] = useState(false);
   const [isNextLevelButton, setIsNextLevelButton] = useState(false);
@@ -145,7 +145,16 @@ export default function MainGame({
       setWordsFound([...wordsFound, word]);
 
       return;
-    } else {
+    } 
+    if (word == 'shuffle' || word == 'shuffle') {
+    
+     
+      toast.info("Shuffled Successfully", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+
+      return  shuffle()
+    }else {
       setIsInValid(true);
       setIsDuplicate(false);
       toast.error(`Unable to form ${word} from ${anagram}`, {
@@ -155,6 +164,7 @@ export default function MainGame({
 
   };
       const loadNextLevel = () => {
+        saveHighscores(scores)
       setIsNextLevel(true)
     }
     if (isNextLevel) {
