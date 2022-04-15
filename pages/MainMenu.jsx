@@ -2,9 +2,11 @@ import styles from "../styles/Home.module.css";
 import LevelLoader from "./LevelLoader";
 import { useState } from "react";
 import HighScore from "./HighScore";
+import HowToPlay from "./HowToPlay";
 export default function MainMenu() {
   const [isLevelLoader, setLevelLoader] = useState(false);
   const [isHighScore, setIsHighScore] = useState(false);
+  const [isHowToPlay, setIsHowToPlay] = useState(false);
   const LoadNextLevel = () => {
     setLevelLoader(true);
   };
@@ -22,6 +24,13 @@ export default function MainMenu() {
       </>
     )
   }
+  if(isHowToPlay){
+    return (
+      <>
+      <HowToPlay />
+      </>
+    )
+  }
   return (
     <>
       <div className={styles.container}>
@@ -31,7 +40,7 @@ export default function MainMenu() {
           <button onClick={LoadNextLevel} className={styles.button}>
             Start
           </button>
-          <button className={styles.button}>How To Play</button>
+          <button className={styles.button} onClick={()=>setIsHowToPlay(true)}>How To Play</button>
           <button className={styles.button}>About</button>
           <button className={styles.button} onClick={()=>setIsHighScore(true)}>Highscores</button>
         </section>

@@ -218,7 +218,7 @@ padding: 10px 30px;
 }
 @media only screen and (max-width: 500px) {
   .container {
-    height:98vh;
+    height:100vh;
     width: 100vw;
     padding: 0;
     margin: 0;
@@ -272,17 +272,22 @@ color: whitesmoke;
 .title h1{
   margin: 0;
 }
-.highScoreContainer{
+.highScoreContainer, .howToPlaySection{
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content:space-around;
 height: 100%;
+color: white;
+text-align: center;
 }
 .highScore  {
   color: white;
 }
-.highScoreContainer button {
+.highScoreContainer button, .howToPlaySection button {
   border-radius: 0;
   padding: 15px;
+}
+.howToPlaySection{
+  margin: 20px;
 }
