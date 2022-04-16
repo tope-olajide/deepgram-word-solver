@@ -41,7 +41,7 @@ export default function MainMenu() {
             Start
           </button>
           <button className={styles.button} onClick={()=>setIsHowToPlay(true)}>How To Play</button>
-          <button className={styles.button}>About</button>
+          {/* <button className={styles.button}>About</button> */}
           <button className={styles.button} onClick={()=>setIsHighScore(true)}>Highscores</button>
         </section>
       </div>

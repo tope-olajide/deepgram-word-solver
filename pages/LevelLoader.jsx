@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import anagrams from "../utils/anagrams";
 import styles from "../styles/Home.module.css";
 import MainGame from './MainGame';
-
+import MainMenu from "./MainMenu";
+import { saveHighscores } from "../utils/highscores";
 export default function LevelLoader({ level, scores }) {
     const currentLevel = level || 1;
     const [isGameOn, setIsGameOn] = useState(false);
@@ -10,7 +11,8 @@ export default function LevelLoader({ level, scores }) {
     const [anagramWordSolution, setAnagramWordSolution] = useState();
     const [anagramWord, setAnagramWord] = useState();
     const wordsNeeded = 5 + currentLevel;
-
+    const [isMainMenu, setIsMainMenu] = useState(false);
+    const [highScore, setHighScore] = useState();
     //randomly pick an anagram word with solution
     
     useEffect(() => {
@@ -25,13 +27,16 @@ export default function LevelLoader({ level, scores }) {
       };
 
       const saveAndQuitGame = () => {
-        const gameStatus = {
-          currentScores,
-          currentLevel,
-        };
-        localStorage.setItem("savedGame", JSON.stringify(gameStatus));
-        setIsHomePage(true);
+        saveHighscores(scores)
+        setIsMainMenu(true);
       };
+      if(isMainMenu) {
+        return (
+          <>
+          <MainMenu />
+          </>
+        )
+      }
       if (isGameOn) {
           return (
               <>
@@ -59,8 +64,8 @@ return (
                 Proceed
             </button>
 
-            <button  className={styles.button}>
-                Save and Quit
+            <button  className={styles.button}  onClick={saveAndQuitGame}>
+                 Quit
             </button>
 
         </section>

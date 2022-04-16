@@ -7,6 +7,8 @@ import soundWave from "./../public/sound-wave-2.gif";
 import { ToastContainer, toast } from "react-toastify";
 import LevelLoader from "./LevelLoader";
 import { saveHighscores } from "../utils/highscores";
+import MainMenu from "./MainMenu";
+
 
 export default function MainGame({
   anagramWord,
@@ -29,6 +31,7 @@ export default function MainGame({
   const [isError, setIsError] = useState(false);
   const [isNextLevelButton, setIsNextLevelButton] = useState(false);
   const [isNextLevel, setIsNextLevel] = useState(false);
+  const [isMainMenu, setIsMainMenu] = useState(false);
 
   const shuffle = useCallback(() => {
     const shuffled = anagram
@@ -37,8 +40,7 @@ export default function MainGame({
         return 0.5 - Math.random();
       })
       .join("");
-    console.log(shuffled);
-    console.log(anagram);
+
     setAnagram(shuffled);
   }, [anagram]);
 
@@ -78,13 +80,11 @@ export default function MainGame({
           data.results.channels[0].alternatives[0].words[0].word;
         setTranscribedWord(userAnswer);
         checkWord(userAnswer);
-        console.log(data.results.channels[0].alternatives[0].transcript);
-        console.log(data.results.channels[0].alternatives[0].words[0].word);
+   /*      console.log(data.results.channels[0].alternatives[0].transcript);
+        console.log(data.results.channels[0].alternatives[0].words[0].word); */
       })
       .catch((error) => {
         console.log(error);
-        //alert('Could you repeat that one more time, please?')
-        //Sorry, I didn't catch that.
         setIsError(true);
         toast.error("Sorry, I didn't catch that", {
           position: toast.POSITION.BOTTOM_CENTER,
@@ -92,7 +92,6 @@ export default function MainGame({
       })
       .finally(() => {
         setIsTranscribing(false);
-        console.log("loading Stops");
       });
   };
   const getAudio = async () => {
@@ -167,6 +166,14 @@ export default function MainGame({
         saveHighscores(scores)
       setIsNextLevel(true)
     }
+
+    if(isMainMenu) {
+      return (
+        <>
+        <MainMenu />
+        </>
+      )
+    }
     if (isNextLevel) {
       return (
         <>
@@ -185,7 +192,7 @@ export default function MainGame({
           <div>
           <h3>Scores: {scores}</h3>
           <h3>Level: {level}</h3>
-          <h3>x</h3></div>
+          <h3 onClick={()=>setIsMainMenu(true)}>x</h3></div>
         </section>
         <section className={styles.anagramWordsContainer}>
           {anagram
