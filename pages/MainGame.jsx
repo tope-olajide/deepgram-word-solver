@@ -145,7 +145,7 @@ export default function MainGame({
 
       return;
     } 
-    if (word == 'shuffle' || word == 'shuffle') {
+    if (word == 'shuffle' || word == 'scramble') {
     
      
       toast.info("Shuffled Successfully", {
