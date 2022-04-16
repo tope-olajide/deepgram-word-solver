@@ -43,7 +43,10 @@ export default function MainGame({
 
     setAnagram(shuffled);
   }, [anagram]);
-
+  useEffect(() => {
+    shuffle();
+   
+ }, [shuffle]);
   useEffect(() => {
      shuffle;
      const wordsNeeded = 5+level
