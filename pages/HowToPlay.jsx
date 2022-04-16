@@ -19,7 +19,7 @@ export default function HowToPlay() {
           <p>
             Create words from the letters displayed at the top by holding the
             record button and then release when you are done recording your answer.
-            <p>The button will be automatically released after five seconds if you didn't release it</p>
+            <p>The button will be automatically released after three seconds if you didn't release it</p>
           </p>
           <p>
             Once you've assembled a valid word, the word will be automatically
