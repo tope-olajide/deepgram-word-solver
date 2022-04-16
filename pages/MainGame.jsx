@@ -148,7 +148,7 @@ export default function MainGame({
     if (word == 'shuffle' || word == 'scramble') {
     
      
-      toast.info("Shuffled Successfully", {
+      toast.info(`${word}d Successfully`, {
         position: toast.POSITION.BOTTOM_CENTER,
       });
 
