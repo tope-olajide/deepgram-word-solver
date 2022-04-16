@@ -3,10 +3,12 @@ import LevelLoader from "./LevelLoader";
 import { useState } from "react";
 import HighScore from "./HighScore";
 import HowToPlay from "./HowToPlay";
+import About from "./About";
 export default function MainMenu() {
   const [isLevelLoader, setLevelLoader] = useState(false);
   const [isHighScore, setIsHighScore] = useState(false);
   const [isHowToPlay, setIsHowToPlay] = useState(false);
+  const [isAbout, setIsAbout] = useState(false);
   const LoadNextLevel = () => {
     setLevelLoader(true);
   };
@@ -14,6 +16,13 @@ export default function MainMenu() {
     return (
       <>
         <LevelLoader />
+      </>
+    );
+  }
+  if (isAbout) {
+    return (
+      <>
+        <About />
       </>
     );
   }
@@ -41,7 +50,7 @@ export default function MainMenu() {
             Start
           </button>
           <button className={styles.button} onClick={()=>setIsHowToPlay(true)}>How To Play</button>
-          {/* <button className={styles.button}>About</button> */}
+           <button className={styles.button}  onClick={()=>setIsAbout(true)}>About</button> 
           <button className={styles.button} onClick={()=>setIsHighScore(true)}>Highscores</button>
         </section>
       </div>
