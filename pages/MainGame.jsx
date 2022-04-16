@@ -45,7 +45,7 @@ export default function MainGame({
   }, [anagram]);
 
   useEffect(() => {
-     shuffle();
+     shuffle;
      const wordsNeeded = 5+level
      if(wordsFound.length >= wordsNeeded) {
        setIsNextLevelButton(true);
