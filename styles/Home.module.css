@@ -167,10 +167,9 @@ padding: 0;
 border: 2px solid rgb(255, 255, 255);
 padding: 0px 5px 2px;
 text-align: center;
-}
-.topMenu h3:nth-child(4) {
 cursor: pointer;
-  }
+}
+
 .isRecordingSection{
 display: block;
 }
