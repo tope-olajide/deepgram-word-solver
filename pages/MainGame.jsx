@@ -281,7 +281,7 @@ export default function MainGame({
             
           </section>
           <button
-            disabled={isTranscribing? true: false}
+            disabled={/* isTranscribing? true: */ false}
             className={styles.microphoneContainer}
             onMouseDown={(e) => {
               recordAnswer();
