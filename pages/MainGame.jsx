@@ -47,13 +47,13 @@ export default function MainGame({
     shuffle();
    
  }, [shuffle]);
+
   useEffect(() => {
-     shuffle;
      const wordsNeeded = 5+level
      if(wordsFound.length >= wordsNeeded) {
        setIsNextLevelButton(true);
      }
-  }, [shuffle, level, wordsFound.length]);
+  }, [level, wordsFound.length]);
 
   const recordAnswer = (e) => {
     setTranscribedWord("");
@@ -78,13 +78,10 @@ export default function MainGame({
     })
       .then((r) => r.json())
       .then((data) => {
-        //alert(data.response)
         const userAnswer =
           data.results.channels[0].alternatives[0].words[0].word;
         setTranscribedWord(userAnswer);
         checkWord(userAnswer);
-   /*      console.log(data.results.channels[0].alternatives[0].transcript);
-        console.log(data.results.channels[0].alternatives[0].words[0].word); */
       })
       .catch((error) => {
         console.log(error);
@@ -111,9 +108,6 @@ export default function MainGame({
           setIsTranscribing(true)
           const blob = new Blob(chunks, { type: "audio/wav" });
           testAudioRecord = URL.createObjectURL(blob);
-          /*  const audio = new Audio(testAudioRecord);
-          setUrl(testAudioRecord)
-          audio.play(); */
           transcribeAnswer(blob);
           console.log(testAudioRecord);
         }
@@ -133,30 +127,25 @@ export default function MainGame({
     if (wordsFound.includes(word)) {
       setIsDuplicate(true);
       setIsInValid(false);
-      toast.info("You've found this word already!", {
+     return toast.info("You've found this word already!", {
         position: toast.POSITION.BOTTOM_CENTER,
       });
-      return;
+      
     }
-    if (anagramSolution.includes(word)) {
-      //  setIsInValid(false);
-      toast.success("Superb !", {
-        position: toast.POSITION.BOTTOM_CENTER,
-      });
+   else if (anagramSolution.includes(word)) {
       setScores(scores + word.length * 100);
       setWordsFound([...wordsFound, word]);
+      return toast.success("Superb !", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
 
-      return;
-    } 
-    if (word == 'shuffle' || word == 'scramble') {
-    
-     
+   else if (word == 'shuffle' || word == 'scramble') {
       toast.info(`Word ${word}d successfully`, {
         position: toast.POSITION.BOTTOM_CENTER,
       });
-
       return  shuffle()
-    }else {
+    } else {
       setIsInValid(true);
       setIsDuplicate(false);
       toast.error(`Unable to form ${word} from ${anagram}`, {
