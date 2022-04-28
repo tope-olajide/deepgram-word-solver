@@ -74,7 +74,7 @@ export default function MainGame({
       method: "POST",
       body: formData,
     })
-      .then((r) => r.json())
+      .then((response) => response.json())
       .then((data) => {
         const userAnswer =
           data.results.channels[0].alternatives[0].words[0].word;
