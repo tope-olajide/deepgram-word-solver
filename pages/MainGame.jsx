@@ -26,7 +26,7 @@ export default function MainGame({
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isInvalid, setIsInValid] = useState(false);
   const [wordsFound, setWordsFound] = useState([]);
-  const [scores, setScores] = useState(currentScores +200);
+  const [scores, setScores] = useState(currentScores);
   const [level, setLevel] = useState(currentLevel);
   const [isError, setIsError] = useState(false);
   const [isNextLevelButton, setIsNextLevelButton] = useState(false);
