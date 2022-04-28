@@ -19,10 +19,8 @@ export default function MainGame({
   const [anagram, setAnagram] = useState(anagramWord);
   const [anagramSolution, setAnagramSolution] = useState(anagramWordSolution);
   const [transcribedWord, setTranscribedWord] = useState("");
-  const [url, setUrl] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
-  const [isTranscribed, setIsTranscribed] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isInvalid, setIsInValid] = useState(false);
   const [wordsFound, setWordsFound] = useState([]);
