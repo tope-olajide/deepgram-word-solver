@@ -24,7 +24,7 @@ export default function HowToPlay() {
           <p>
             Once you&apos;ve assembled a valid word, the word will be automatically
             added to the found words grid.  Spell as many words as you can to score maximum
-            points! (50 points per letter)
+            points! (100 points per letter)
           </p>
          <p>You can also say &quot;shuffle&quot; or &quot;scramble&quot; to mix the words together in a random way or simply press the shuffle button</p>
         </section>
